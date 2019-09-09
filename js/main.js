@@ -158,70 +158,70 @@ domReady(function() {
     event.target.parentNode.removeChild(event.target);
   });
 
-  sendMessage.addEventListener("click", function(event) {
-    event.preventDefault();
+  // sendMessage.addEventListener("click", function(event) {
+  //   event.preventDefault();
 
-    var name = formName.value;
-    var email = formEmail.value;
-    var phone = formPhone.value;
-    var message = formMessage.value;
-    var error = false;
+  //   var name = formName.value;
+  //   var email = formEmail.value;
+  //   var phone = formPhone.value;
+  //   var message = formMessage.value;
+  //   var error = false;
 
-    if(!name.length) {
-      error = true;
-      formName.classList.add("error");
-    }
-    if(!email.length || !emailRegex.test(email)) {
-      error = true;
-      formEmail.classList.add("error");
-    }
-    if(!message.length) {
-      error = true;
-      formMessage.classList.add("error");
-    }
+  //   if(!name.length) {
+  //     error = true;
+  //     formName.classList.add("error");
+  //   }
+  //   if(!email.length || !emailRegex.test(email)) {
+  //     error = true;
+  //     formEmail.classList.add("error");
+  //   }
+  //   if(!message.length) {
+  //     error = true;
+  //     formMessage.classList.add("error");
+  //   }
 
-    if(!error) {
-      //send form
-      //hide send button
-      sendMessage.style.display = "none";
-      formError.style.display = "none";
+  //   if(!error) {
+  //     //send form
+  //     //hide send button
+  //     sendMessage.style.display = "none";
+  //     formError.style.display = "none";
 
-      //prepare email content
-      var emailContent = "Name: " + name + "\n"
-        + "Email: " + email + "\n"
-        + "Phone: " + phone+ "\n"
-        + "Message: " + message;
+  //     //prepare email content
+  //     var emailContent = "Name: " + name + "\n"
+  //       + "Email: " + email + "\n"
+  //       + "Phone: " + phone+ "\n"
+  //       + "Message: " + message;
 
-      var request = new XMLHttpRequest();
+  //     var request = new XMLHttpRequest();
 
-      request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-          //success
-          form.style.display = "none";
-          formSend.style.display = "";
-        } else
-        if(request.readyState == 4) {
-          //error
-          sendMessage.style.display = "";
-          formError.style.display = "";
-        }
-      };
+  //     request.onreadystatechange = function() {
+  //       if (request.readyState == 4 && request.status == 200) {
+  //         //success
+  //         form.style.display = "none";
+  //         formSend.style.display = "";
+  //       } else
+  //       if(request.readyState == 4) {
+  //         //error
+  //         sendMessage.style.display = "";
+  //         formError.style.display = "";
+  //       }
+  //     };
 
-      //combine params
-      var data_js = {
-        "access_token": "dk6qipt22215arnk1kv63qex",
-        "subject": "Contact Me form",
-        "text": emailContent
-      };
+  //     //combine params
+  //     var data_js = {
+  //       "access_token": "dk6qipt22215arnk1kv63qex",
+  //       "subject": "Contact Me form",
+  //       "text": emailContent
+  //     };
 
-      var params = toParams(data_js);
+  //     var params = toParams(data_js);
 
-      request.open("POST", "https://postmail.invotes.com/send", true);
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      request.send(params);
-    }
+  //     request.open("POST", "https://postmail.invotes.com/send", true);
+  //     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //     request.send(params);
+  //   }
 
-  });
+  // });
 
   var removeError = function(event) {
     event.target.classList.remove("error");
